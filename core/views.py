@@ -2,13 +2,16 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from .serializer import TestSerializer, QuestionSerializer, SubmissionSerializer, CustomTokenObtainPairSerializer, MyTestSerializer, MySubmissionSerializer, SubmissionFULLSerializer
+from .serializer import TestSerializer, QuestionSerializer, SubmissionSerializer, CustomTokenObtainPairSerializer, MyTestSerializer, MySubmissionSerializer, SubmissionFULLSerializer, SignupSerializer
 from .models import Test, Question, Submission
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView 
 from rest_framework import status
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 from rest_framework.exceptions import NotFound
+from django.contrib.auth import get_user_model
+
+User  = get_user_model()
 # Create your views here.
 
 
@@ -99,3 +102,8 @@ class MySubmissionListView(ListAPIView):
 class SubmissionDetailView(RetrieveAPIView):
     serializer_class = SubmissionFULLSerializer
     queryset = Submission.objects.all()
+
+
+class SignupCreatedView(CreateAPIView):
+    serializer_class = SignupSerializer
+    queryset = User.objects.all()

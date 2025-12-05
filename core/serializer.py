@@ -223,3 +223,22 @@ class SubmissionFULLSerializer(serializers.ModelSerializer):
     
     def get_test_name(self, obj):
         return obj.test.nomi
+
+
+class SignupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["username", "email", "password"]
+        extra_kwargs = {
+            "password": {"write_only": True}
+        }
+
+    def create(self, validated_data):
+        user = User(
+            username = validated_data["username"],
+            email=validated_data["email"]
+        )
+        user.set_password(validated_data["password"])
+        user.save()
+        return user
+
