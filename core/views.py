@@ -22,15 +22,6 @@ class TestUpdateDestroyView(DestroyAPIView, UpdateAPIView):
     queryset = Test.objects.all()
     permission_class = [IsAuthenticated]
 
-
-
-# class QuestionCreateAPIView(CreateAPIView):   
-#     serializer_class = QuestionSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def perform_create(self, serializer):
-#         test = Test.objects.get(pk=self.kwargs['test_pk'])
-#         serializer.save(test=test)
     
 
 class SubmissonView(CreateAPIView):
