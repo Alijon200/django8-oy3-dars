@@ -150,3 +150,5 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 STATIC_ROOT = "/var/www/quiz_back/staticfiles"
+
+CORS_ALLOW_CREDENTIALS = True
